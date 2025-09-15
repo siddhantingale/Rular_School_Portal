@@ -1,0 +1,808 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(210, 40%, 98%);
+  --foreground: hsl(222.2, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222.2, 84%, 4.9%);
+  --primary: hsl(158, 60%, 25%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(24, 100%, 48%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --ring: hsl(158, 60%, 25%);
+  --chart-1: hsl(158, 60%, 25%);
+  --chart-2: hsl(24, 100%, 48%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(222.2, 84%, 4.9%);
+  --sidebar-primary: hsl(158, 60%, 25%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(210, 40%, 96%);
+  --sidebar-accent-foreground: hsl(222.2, 84%, 4.9%);
+  --sidebar-border: hsl(214.3, 31.8%, 91.4%);
+  --sidebar-ring: hsl(158, 60%, 25%);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --popover: hsl(222.2, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(158, 60%, 35%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(24, 100%, 55%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217.2, 32.6%, 17.5%);
+  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --accent: hsl(217.2, 32.6%, 17.5%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217.2, 32.6%, 17.5%);
+  --input: hsl(217.2, 32.6%, 17.5%);
+  --ring: hsl(158, 60%, 35%);
+  --chart-1: hsl(158, 60%, 35%);
+  --chart-2: hsl(24, 100%, 55%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(222.2, 84%, 4.9%);
+  --sidebar-foreground: hsl(210, 40%, 98%);
+  --sidebar-primary: hsl(158, 60%, 35%);
+  --sidebar-primary-foreground: hsl(210, 40%, 98%);
+  --sidebar-accent: hsl(217.2, 32.6%, 17.5%);
+  --sidebar-accent-foreground: hsl(210, 40%, 98%);
+  --sidebar-border: hsl(217.2, 32.6%, 17.5%);
+  --sidebar-ring: hsl(158, 60%, 35%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}
+
+/* Custom scrollbar styles matching design */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Fade in animation for page transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Pulse animation for scanning states */
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Loading skeleton animation */
+.skeleton {
+  @apply animate-pulse bg-muted;
+}
+
+/* Focus ring styles for accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+/* Status indicators matching rural school design */
+.status-online {
+  @apply text-green-600;
+}
+
+.status-offline {
+  @apply text-red-600;
+}
+
+.status-syncing {
+  @apply text-orange-600;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Gradient backgrounds matching rural school theme */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+}
+
+.gradient-muted {
+  background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--accent)) 100%);
+}
+
+/* Rural school themed gradients */
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(158, 60%, 25%) 0%, hsl(24, 100%, 48%) 100%);
+}
+
+.auth-gradient {
+  background: linear-gradient(135deg, 
+    hsla(158, 60%, 25%, 0.05) 0%, 
+    hsla(24, 100%, 48%, 0.05) 100%
+  );
+}
+
+/* Attendance method cards styling */
+.attendance-card {
+  @apply bg-card border border-border rounded-lg p-6 cursor-pointer transition-all duration-200;
+}
+
+.attendance-card:hover {
+  @apply shadow-lg border-primary border-opacity-20 bg-primary bg-opacity-5;
+}
+
+.attendance-card.manual:hover {
+  @apply border-primary border-opacity-30 bg-primary bg-opacity-10;
+}
+
+.attendance-card.facial:hover {
+  @apply border-secondary border-opacity-30 bg-secondary bg-opacity-10;
+}
+
+.attendance-card.rfid:hover {
+  @apply border-accent border-opacity-50 bg-accent bg-opacity-20;
+}
+
+/* Scan animation for RFID and facial recognition */
+.scan-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-animation::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    hsl(var(--secondary), 0.5), 
+    transparent
+  );
+  animation: scanning 2s linear infinite;
+  z-index: 1;
+}
+
+@keyframes scanning {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Present/Absent status styling */
+.status-present {
+  @apply text-green-600 bg-green-50 border-green-200;
+}
+
+.status-absent {
+  @apply text-red-600 bg-red-50 border-red-200;
+}
+
+/* Attendance rate indicators */
+.attendance-excellent {
+  @apply text-green-600;
+}
+
+.attendance-good {
+  @apply text-yellow-600;
+}
+
+.attendance-poor {
+  @apply text-red-600;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar-transition {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-nav-active {
+    transform: translateX(0);
+  }
+}
+
+/* Print styles for reports */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  
+  .print-break {
+    page-break-after: always;
+  }
+  
+  /* Ensure proper colors for printed attendance reports */
+  .status-present {
+    background: #f0fdf4 !important;
+    color: #16a34a !important;
+  }
+  
+  .status-absent {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+  }
+}
+
+/* High contrast mode support for accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --border: hsl(0, 0%, 40%);
+    --muted: hsl(0, 0%, 85%);
+  }
+  
+  .dark {
+    --border: hsl(0, 0%, 60%);
+    --muted: hsl(0, 0%, 25%);
+  }
+  
+  .attendance-card:hover {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .pulse-animation,
+  .card-hover,
+  .scan-animation,
+  .scanning {
+    animation: none;
+    transition: none;
+  }
+  
+  .scan-animation::before {
+    display: none;
+  }
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 0%,
+    hsl(var(--muted), 0.8) 50%,
+    hsl(var(--muted)) 100%
+  );
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+/* Toast notifications styling */
+.toast-success {
+  @apply bg-green-50 border-green-200 text-green-900;
+}
+
+.toast-error {
+  @apply bg-red-50 border-red-200 text-red-900;
+}
+
+.toast-warning {
+  @apply bg-yellow-50 border-yellow-200 text-yellow-900;
+}
+
+.toast-info {
+  @apply bg-blue-50 border-blue-200 text-blue-900;
+}
+
+/* Camera feed styling for facial recognition */
+.camera-frame {
+  position: relative;
+  border: 2px solid hsl(var(--secondary));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.camera-frame::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid hsl(var(--secondary));
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.face-detection-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* RFID scanner styling */
+.rfid-scanner {
+  @apply relative;
+}
+
+.rfid-pulse {
+  @apply absolute inset-0 rounded-full border-2 border-secondary;
+  animation: rfid-pulse 2s infinite;
+}
+
+@keyframes rfid-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Data table styling */
+.data-table {
+  @apply w-full border-collapse;
+}
+
+.data-table th {
+  @apply bg-muted bg-opacity-50 px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider;
+}
+
+.data-table td {
+  @apply px-6 py-4 whitespace-nowrap text-sm;
+}
+
+.data-table tr:hover {
+  @apply bg-muted bg-opacity-30;
+}
+
+/* Report styling */
+.report-header {
+  @apply text-center border-b-2 border-primary pb-4 mb-6;
+}
+
+.report-summary {
+  @apply grid grid-cols-4 gap-4 mb-6;
+}
+
+.report-stat {
+  @apply text-center p-4 border border-border rounded-lg;
+}
+
+.report-stat .number {
+  @apply text-2xl font-bold text-primary mb-1;
+}
+
+.report-stat .label {
+  @apply text-sm text-muted-foreground uppercase;
+}
+
+/* Offline indicator */
+.offline-badge {
+  @apply fixed top-4 right-4 z-50 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium;
+  animation: bounce-in 0.6s ease-out;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Sync status indicator */
+.sync-status {
+  @apply flex items-center gap-2 text-sm;
+}
+
+.sync-status.syncing {
+  @apply text-yellow-600;
+}
+
+.sync-status.success {
+  @apply text-green-600;
+}
+
+.sync-status.error {
+  @apply text-red-600;
+}
+
+/* PWA install prompt */
+.pwa-prompt {
+  @apply fixed bottom-4 right-4 max-w-sm bg-card border border-border rounded-lg shadow-xl p-4 z-50;
+  animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Form validation styling */
+.field-error {
+  @apply border-red-500 focus:ring-red-500;
+}
+
+.error-message {
+  @apply text-red-600 text-sm mt-1;
+}
+
+/* Success states */
+.success-state {
+  @apply bg-green-50 border border-green-200 rounded-lg p-4 text-green-800;
+}
+
+/* Empty states */
+.empty-state {
+  @apply text-center py-12 text-muted-foreground;
+}
+
+.empty-state-icon {
+  @apply w-16 h-16 mx-auto mb-4 text-muted-foreground text-opacity-50;
+}
+
+/* Button variants matching design */
+.btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500 focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 focus:ring-2 focus:ring-offset-2;
+}
+
+/* Badge variants */
+.badge-success {
+  @apply bg-green-100 text-green-800 border-green-200;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800 border-red-200;
+}
+
+.badge-info {
+  @apply bg-blue-100 text-blue-800 border-blue-200;
+}
+
+/* Rural school specific styling */
+.school-branding {
+  background: linear-gradient(135deg, hsl(158, 60%, 25%) 0%, hsl(24, 100%, 48%) 100%);
+  color: white;
+}
+
+.attendance-method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Educational theme colors */
+.education-primary {
+  color: hsl(158, 60%, 25%);
+}
+
+.education-secondary {
+  color: hsl(24, 100%, 48%);
+}
+
+.education-accent {
+  color: hsl(147, 78%, 42%);
+}
+
+/* Attendance percentage color coding */
+.percentage-excellent {
+  @apply text-green-700 bg-green-100;
+}
+
+.percentage-good {
+  @apply text-blue-700 bg-blue-100;
+}
+
+.percentage-average {
+  @apply text-yellow-700 bg-yellow-100;
+}
+
+.percentage-poor {
+  @apply text-red-700 bg-red-100;
+}
+
+/* Student photo placeholder */
+.student-avatar {
+  @apply w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-medium;
+}
+
+/* Teacher dashboard specific styles */
+.teacher-card {
+  background: linear-gradient(to bottom right, hsla(var(--primary-hue), var(--primary-sat), var(--primary-light), 0.05), hsla(var(--secondary-hue), var(--secondary-sat), var(--secondary-light), 0.05));
+  @apply border border-primary border-opacity-10 rounded-lg p-6;
+}
+
+.teacher-card:hover {
+  @apply shadow-md border-primary border-opacity-20;
+}
+
+/* Admin dashboard specific styles */
+.admin-stat-card {
+  background: linear-gradient(to bottom right, white, hsla(var(--muted-hue), var(--muted-sat), var(--muted-light), 0.3));
+  @apply border border-border rounded-lg p-6 shadow-sm;
+}
+
+.admin-stat-card:hover {
+  @apply shadow-md;
+}
+
+/* Quick action buttons */
+.quick-action {
+  @apply flex flex-col items-center justify-center p-6 rounded-lg border-2 border-dashed border-muted-foreground border-opacity-20 hover:border-primary hover:border-opacity-40 hover:bg-primary hover:bg-opacity-5 transition-all cursor-pointer;
+}
+
+.quick-action:hover .quick-action-icon {
+  @apply text-primary;
+}
+
+.quick-action-icon {
+  @apply w-12 h-12 mb-3 text-muted-foreground transition-colors;
+}
+
+/* Notification styles */
+.notification-dot {
+  @apply absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full border-2 border-white;
+}
+
+.notification-badge {
+  @apply absolute -top-2 -right-2 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center;
+}
+
+/* Class roster styling */
+.class-roster {
+  background: linear-gradient(to right, hsla(var(--primary-hue), var(--primary-sat), var(--primary-light), 0.1), transparent, hsla(var(--secondary-hue), var(--secondary-sat), var(--secondary-light), 0.1));
+  @apply rounded-lg p-4;
+}
+
+/* Attendance streak indicators */
+.streak-excellent {
+  @apply bg-gradient-to-r from-green-400 to-green-600 text-white;
+}
+
+.streak-good {
+  @apply bg-gradient-to-r from-blue-400 to-blue-600 text-white;
+}
+
+.streak-warning {
+  @apply bg-gradient-to-r from-yellow-400 to-yellow-600 text-white;
+}
+
+/* Report chart styling */
+.chart-container {
+  background: linear-gradient(to bottom right, white, hsla(var(--muted-hue), var(--muted-sat), var(--muted-light), 0.2));
+  @apply rounded-lg p-4 border border-border;
+}
+
+/* School logo and branding */
+.school-logo {
+  @apply w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white;
+}
+
+/* Feature highlight cards */
+.feature-card {
+  background: linear-gradient(to bottom right, hsl(var(--card)), hsla(var(--muted-hue), var(--muted-sat), var(--muted-light), 0.3));
+  @apply border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow;
+}
+
+/* Rural school theme customizations */
+.rural-theme {
+  --primary-rgb: 34, 139, 69; /* Green for nature/rural */
+  --secondary-rgb: 245, 158, 11; /* Orange/amber for warmth */
+  --accent-rgb: 16, 185, 129; /* Emerald accent */
+}
+
+/* Connection status indicators */
+.connection-online {
+  @apply text-green-600 bg-green-100 border-green-200;
+}
+
+.connection-offline {
+  @apply text-red-600 bg-red-100 border-red-200;
+}
+
+.connection-syncing {
+  @apply text-orange-600 bg-orange-100 border-orange-200;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .bounce-enter {
+    animation: bounceIn 0.6s ease-out;
+  }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Focus visible for keyboard navigation */
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Rural school inspired patterns */
+.pattern-dots {
+  background-image: radial-gradient(circle, hsl(var(--muted-foreground), 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pattern-grid {
+  background-image: 
+    linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom utility classes */
+.text-rural-primary {
+  color: hsl(158, 60%, 25%);
+}
+
+.text-rural-secondary {
+  color: hsl(24, 100%, 48%);
+}
+
+.bg-rural-primary {
+  background-color: hsl(158, 60%, 25%);
+}
+
+.bg-rural-secondary {
+  background-color: hsl(24, 100%, 48%);
+}
+
+.border-rural-primary {
+  border-color: hsl(158, 60%, 25%);
+}
+
+.border-rural-secondary {
+  border-color: hsl(24, 100%, 48%);
+}
+
+/* Responsive text sizing for rural environments */
+@media (max-width: 640px) {
+  .rural-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .rural-subtitle {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .rural-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .rural-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
