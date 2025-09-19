@@ -27,6 +27,7 @@ export const students = pgTable("students", {
   rfidCardId: text("rfid_card_id"),
   photoUrl: text("photo_url"),
   faceEncoding: text("face_encoding"), // JSON string of face encoding
+  userId: text("user_id"), // linked user account (for student role)
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
@@ -73,6 +74,7 @@ export const insertStudentSchema = createInsertSchema(students).pick({
   rfidCardId: true,
   photoUrl: true,
   faceEncoding: true,
+  userId: true,
 });
 
 export const insertAttendanceSchema = createInsertSchema(attendance).pick({

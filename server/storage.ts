@@ -33,6 +33,7 @@ export interface IStorage {
   deleteStudent(id: string): Promise<boolean>;
   getAllStudents(): Promise<Student[]>;
   getStudentByRfid(rfidId: string): Promise<Student | undefined>;
+  getStudentByUserId(userId: string): Promise<Student | undefined>;
 
   // Attendance methods
   getAttendance(id: string): Promise<Attendance | undefined>;
@@ -190,6 +191,7 @@ export class MemStorage implements IStorage {
           ...studentData,
           photoUrl: null,
           faceEncoding: null,
+          userId: null,
           isActive: true,
           createdAt: new Date(),
         };
@@ -273,6 +275,7 @@ export class MemStorage implements IStorage {
       rfidCardId: insertStudent.rfidCardId ?? null,
       photoUrl: insertStudent.photoUrl ?? null,
       faceEncoding: insertStudent.faceEncoding ?? null,
+      userId: insertStudent.userId ?? null,
       isActive: true,
       createdAt: new Date(),
     };
@@ -299,6 +302,10 @@ export class MemStorage implements IStorage {
 
   async getStudentByRfid(rfidId: string): Promise<Student | undefined> {
     return Array.from(this.students.values()).find(student => student.rfidCardId === rfidId);
+  }
+
+  async getStudentByUserId(userId: string): Promise<Student | undefined> {
+    return Array.from(this.students.values()).find(student => student.userId === userId);
   }
 
   // Attendance methods

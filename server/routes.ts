@@ -5,10 +5,19 @@ import { setupAuth } from "./auth";
 import { insertStudentSchema, insertAttendanceSchema, insertClassSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
-// Configure multer for file uploads
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Ensure uploads directory exists and configure multer for file uploads
+const uploadsDir = path.resolve(__dirname, "..", "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 const upload = multer({
-  dest: 'uploads/',
+  dest: uploadsDir,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif/;
@@ -281,8 +290,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Serve uploaded files
-  app.use('/uploads', express.static('uploads'));
+  // Serve uploaded files from absolute path
+  app.use('/uploads', express.static(uploadsDir));
 
   const httpServer = createServer(app);
   return httpServer;
